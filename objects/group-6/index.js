@@ -1,5 +1,5 @@
 
-const prompt = require("prompt-sync")();
+// const prompt = require("prompt-sync")();
 // const students = require("./groups");
 // const students = genStudents();
 const students = require("../../data/groups");
@@ -37,43 +37,43 @@ function applySortIndex(index) {
 }
 
 const getStudent = (index) => {
-    let i = Number(index) 
-    if (isNaN(i) || students.all.length > i) i = 0 // TODO: fix this. What happens when we don't get good input?
-    else i = index
-    return students.all[i]
+    if (!Number(index)) {
+        if (typeof index !== "string") return;
+        const inputString = index;
+        return students.all.filter((student) => {return student.firstname === inputString})
+    } else {
+        return students.all[Math.floor(index) - 1]
+    }
 }
 const getStudents = () =>{
     return students.all
 }
 
 const setupGroups = () => {
-    
+    const studentsPerGroup = 6;
     sortIndexDefined = applySortIndex(0)
 
     students.all.sort(function(a ,b){
         return a.sortIndex - b.sortIndex
     })
 
-    groupsAssigned = assignGroup(0, 6) // TODO: maybe this need more thought? It works?!
+    groupsAssigned = assignGroup(0, studentsPerGroup) // TODO: maybe this need more thought? It works?!
 
-    for (let i = 0; i < 6; i++) {
-        const studentsByGroup = students.all.splice(0,6);
-        allGroups[i] = [];
+    const studentsClone = JSON.parse(JSON.stringify(students.all))
+    for (let i = 0; i < studentsPerGroup; i++) {
+        const studentsByGroup = studentsClone.splice(0, studentsPerGroup); //Yank out the first 6 students
+
+        allGroups[i] = []; //assign the current rotations index to an empty array
         studentsByGroup.forEach(student => {
-            allGroups[i].push("Group: " + student.group + " " + student.firstname + student.lastname)
+            allGroups[i].push("Group: " + student.group + " " + student.firstname + " " + student.lastname)
         })
     }
-    // console.log(allGroups)
-
     return allGroups
 }
 // TODO: return an array with only the students that belongs to a group with a specific index
 const getGroup = (index) => {
+    if (!index) return allGroups;
     return allGroups[index - 1];
-    // return({
-    //     TODO: "return group " + arg
-    //     // students: students.all.splice(11,6) // TODO: this works as long as the array of students is sorted by group. Also the size 
-    // })
 }
 
 exports._setupGroups = setupGroups
@@ -84,11 +84,11 @@ exports._getGroup = getGroup
 
 // console.log(setupGroups())
 
-setupGroups();
+// setupGroups();
 
-while (true) {
-    const input = prompt("Enter operation: ");
-    if (input === "q") {process.exit(0);}
+// while (true) {
+//     const input = prompt("Enter operation: ");
+//     if (input === "q") {process.exit(0);}
 
-    console.log(getGroup(input))
-}
+//     console.log(getGroup(input))
+// }
