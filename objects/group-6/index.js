@@ -63,6 +63,8 @@
    //  return students.all
 // }
  
+ //End Hannas version!
+ 
  // TODO: return an array with only the students that belongs to a group with a specific index
  const getGroup = (arg) => {
      return({
