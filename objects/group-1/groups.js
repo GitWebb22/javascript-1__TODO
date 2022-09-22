@@ -4,3 +4,5 @@ exports.all =
         { firstname: 'Lorem', lastname: 'Ipsum', email: 'lorem.ipsum@example.com' },
         { firstname: 'Dolor', lastname: 'Sit Amet', email: 'dolor.sit-amet@example.com' },
 ]
+
+// Hejsan Robin här
