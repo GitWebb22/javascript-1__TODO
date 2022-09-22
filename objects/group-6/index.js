@@ -49,6 +49,20 @@
  
      return students.all   
  }
+ 
+ //Hannas version:
+ //  const setupGroups = () => {
+     
+ //    ambitionDefined = applyAmbition(0)
+ // Hannas add: Sorts after hoursPerWeek and then divides into groups. TODO: Separate the array into groups in getGroup.
+ 
+ //   function myComparator(a, b) {return a.hoursPerWeek - b.hoursPerWeek }
+//students.all.sort(myComparator);
+     
+ // groupsAssigned = assignGroup(0, 6)
+   //  return students.all
+// }
+ 
  // TODO: return an array with only the students that belongs to a group with a specific index
  const getGroup = (arg) => {
      return({
