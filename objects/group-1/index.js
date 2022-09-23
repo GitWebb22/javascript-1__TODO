@@ -1,4 +1,4 @@
-
+require('dotenv').config()
  const students = require("./groups")
  // const students = require("../data/groups")
  
