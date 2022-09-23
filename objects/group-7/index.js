@@ -1,21 +1,18 @@
-
- const students = require("../groups")
+const students = require("../groups")
  // const students = require("../data/groups")
  
  const allStudents = students.all // read students from imported module
- let ambitionDefined,
-     groupsAssigned
- 
- 
+ let ambitionDefined, groupsAssigned
+
  function assignGroup(index, size) {
-     let group = Math.floor((index + 1) / size) + 1
+     let group = Math.floor((index + 1) / size) + 1;
      students.all[index].group = group
      index++
  
      if(index >= students.all.length) {
-         return true   
+         return true;   
      } 
-     assignGroup(index, size)
+     assignGroup(index, size);
  }
  // TODO: Time isn't everything. Or is it?
  function applyAmbition(index) {
@@ -35,9 +32,11 @@
  }
  
  const getStudent = (index) => {
-     let i = Number(index) 
-     if (isNaN(i) || students.all.length > i) i = 0 // TODO: fix this. What happens when we don't get good input?
-     else i = index
+     let i = Number(index-1)    //changed to index - 1 to make it possible for the  user to get the correct student info.
+    //operator inside if is fixed. Index is changed 
+     if (isNaN(i) || i > students.all.length || i > 0)
+     i += 0;    //changed so that the value 
+     //else i = index
      return students.all[i]
  }
  const getStudents = () =>{
