@@ -34,27 +34,39 @@
  
  const getStudent = (index) => {
      let i = Number(index) 
-     if (isNaN(i) || students.all.length > i) i = 0 // TODO: fix this. What happens when we don't get good input?
+     if (isNaN(i) || students.all.length < i){
+        console.log("Fel val, i får värdet 0");
+        i = 0;
+     }  // TODO: fix this. What happens when we don't get good input?
      else i = index
-     return students.all[i]
+     return console.log(students.all[i])
  }
+
+
  const getStudents = () =>{
      return students.all
  }
  
  const setupGroups = () => {
      
-     ambitionDefined = applyAmbition(0)
-     groupsAssigned = assignGroup(0, 6) // TODO: maybe this need more thought?
- 
-     return students.all   
- }
+    ambitionDefined = applyAmbition(0)
+    function myComparator(a, b) {return a.hoursPerWeek - b.hoursPerWeek }
+    students.all.sort(myComparator);
+    
+ groupsAssigned = assignGroup(0, 6)
+    return students.all
+}
  // TODO: return an array with only the students that belongs to a group with a specific index
+
+
+ let grupp = [];
  const getGroup = (arg) => {
-     return({
-         TODO: "return group " + arg
-         // students: students.all.splice(11,6) // TODO: this works as long as the array of students is sorted by group. Also the size 
-     })
+    for(let i = 0; i < students.all.length; i++){
+        if(students.all[i].group == arg){
+            grupp.push(students.all[i]);
+        }  
+    } return grupp;
+    
  }
  
  exports._setupGroups = setupGroups
