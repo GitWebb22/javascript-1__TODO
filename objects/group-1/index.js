@@ -17,15 +17,11 @@ const students = require("./groups")
  }
  
  function applyAmbition(index) {
-     // TODO: Time isn't everything
-     // TODO: Scheduled time in the classroom should be accounted for?
      students.all[index].randomNumber = Math.floor(Math.random() * 7 + 1)
-     // students.all[index].hasJob = true 
-     // ... 
      index++
  
      if (index >= students.all.length) {
-         return true // remember that it's good practice to have single point of return for a function
+         return true
      }
      applyAmbition(index)
  }
@@ -35,7 +31,7 @@ const students = require("./groups")
      if (isNaN(i) || students.all.length < i){
         console.log('Invalid Input, Index Set To 0');
         i = 0;
-     }  // TODO: fix this. What happens when we don't get good input?
+     }
      else i = index
      return console.log(students.all[i])
  }
@@ -53,7 +49,6 @@ const students = require("./groups")
     groupsAssigned = assignGroup(0, 6)
     return students.all
 }
- // TODO: return an array with only the students that belongs to a group with a specific index
 
 
  const getGroup = (arg) => {
