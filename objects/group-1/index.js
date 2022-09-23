@@ -50,7 +50,6 @@ const students = require("./groups")
     return students.all
 }
 
-
  const getGroup = (arg) => {
   const group = [];
     for(let i = 0; i < students.all.length; i++){
@@ -61,8 +60,10 @@ const students = require("./groups")
     
  }
  
- exports.setupGroups = setupGroups
- exports.getStudents = getStudents
- exports.getStudent = getStudent
- exports.getGroup = getGroup
- exports.assignGroup = assignGroup
+
+
+ exports._setupGroups = setupGroups
+ exports._getStudents = getStudents
+ exports._getStudent = getStudent
+ exports._getGroup = getGroup
+ exports._assignGroup = assignGroup

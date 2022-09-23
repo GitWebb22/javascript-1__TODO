@@ -1,8 +1,9 @@
-const {setupGroups} = require("./index.js");
-const {getStudents} = require("./index.js");
-const {getStudent} = require("./index.js");
-const {getGroup} = require("./index.js");
-const {assignGroup} = require("./index.js");
+const {_setupGroups} = require("./index.js");
+const {_getStudents} = require("./index.js");
+const {_getStudent} = require("./index.js");
+const {_getGroup} = require("./index.js");
+const {_assignGroup} = require("./index.js");
 const students = require("./groups")
 
-setupGroups();
+_setupGroups();
+console.log(_setupGroups());
