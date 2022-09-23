@@ -1,5 +1,5 @@
 
- const students = require("./groups")
+ const students = require("../groups")
  // const students = require("../data/groups")
  
  const allStudents = students.all // read students from imported module
@@ -17,13 +17,15 @@
      } 
      assignGroup(index, size)
  }
- 
+ // TODO: Time isn't everything. Or is it?
  function applyAmbition(index) {
-     // TODO: Time isn't everything
-     // TODO: Scheduled time in the classroom should be accounted for?
+     // TODO: should scheduled time in the classroom be accounted for?
      students.all[index].hoursPerWeek = Math.floor(Math.random() * 24)
-     // students.all[index].hasJob = true 
-     // ... 
+     // Some examples of attributes for inspiration. Booleans can be used on their own or grouped in an anonymous object
+     //  students.all[index].personalityType = {
+    //      red: false, blue: false, green: true, yellow: false
+    //   }
+    // ...
      index++
  
      if (index >= allStudents.length) {
@@ -45,7 +47,7 @@
  const setupGroups = () => {
      
      ambitionDefined = applyAmbition(0)
-     groupsAssigned = assignGroup(0, 6) // TODO: maybe this need more thought?
+     groupsAssigned = assignGroup(0, 5) // TODO: maybe this need more thought?
  
      return students.all   
  }
