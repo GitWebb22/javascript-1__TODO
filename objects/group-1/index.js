@@ -19,7 +19,7 @@ require('dotenv').config()
  function applyAmbition(index) {
      // TODO: Time isn't everything
      // TODO: Scheduled time in the classroom should be accounted for?
-     students.all[index].hoursPerWeek = Math.floor(Math.random() * 24)
+     students.all[index].randomNumber = Math.floor(Math.random() * 7 + 1)
      // students.all[index].hasJob = true 
      // ... 
      index++
@@ -48,7 +48,7 @@ require('dotenv').config()
  const setupGroups = () => {
      
     ambitionDefined = applyAmbition(0)
-    function myComparator(a, b) {return a.hoursPerWeek - b.hoursPerWeek }
+    function myComparator(a, b) {return a.randomNumber - b.randomNumber }
     students.all.sort(myComparator)
     groupsAssigned = assignGroup(0, 6)
     return students.all
