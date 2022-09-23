@@ -21,7 +21,7 @@ function assignGroup(index, size) {
 function applyAmbition(index) {
     // TODO: Time isn't everything
     // TODO: Scheduled time in the classroom should be accounted for?
-    students.all[index].hoursPerWeek = Math.floor(Math.random() * 24)
+    students.all[index].hoursPerWeek = Math.floor(Math.random() * 24);
     // students.all[index].hasJob = true 
     // ... 
     index++
