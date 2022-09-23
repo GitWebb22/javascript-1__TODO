@@ -64,6 +64,7 @@ require('dotenv').config()
 // }
  
  //End Hannas version!
+
  // TODO: return an array with only the students that belongs to a group with a specific index
  const getGroup = (arg) => {
      return({
@@ -71,7 +72,34 @@ require('dotenv').config()
          // students: students.all.splice(11,6) // TODO: this works as long as the array of students is sorted by group. Also the size 
      })
  }
- 
+ // Hannas version: When you call the function with groupnumber, it returns the students in the group.
+//  const getGroup = (group) => {
+//     let groupDivided = [];
+//     switch(group) {
+//     case 1:
+//         groupDivided = students.all.slice(0,5)
+//         return groupDivided;
+//     case 2:
+//         groupDivided = students.all.slice(6,11)
+//         return groupDivided;
+//     case 3:
+//         groupDivided = students.all.slice(12,17)
+//         return groupDivided;
+//     case 4:
+//         groupDivided = students.all.slice(18,23)
+//         return groupDivided;
+//     case 5:
+//         groupDivided = students.all.slice(24,29)
+//         return groupDivided;
+//     case 6:
+//         groupDivided = students.all.slice(30,36)
+//         return groupDivided;
+//     default:
+//             return console.log("Group not found");
+//         }
+//     }   
+
+    //End Hannas version!
  exports._setupGroups = setupGroups
  exports._getStudents = getStudents
  exports._getStudent = getStudent
