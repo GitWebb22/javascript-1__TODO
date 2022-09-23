@@ -1,5 +1,5 @@
 require('dotenv').config()
- const students = require("./groups")
+const students = require("./groups")
  
  let ambitionDefined,
      groupsAssigned
@@ -56,13 +56,13 @@ require('dotenv').config()
  // TODO: return an array with only the students that belongs to a group with a specific index
 
 
- let grupp = [];
  const getGroup = (arg) => {
+  const group = [];
     for(let i = 0; i < students.all.length; i++){
         if(students.all[i].group == arg){
-            grupp.push(students.all[i]);
+          group.push(students.all[i]);
         }  
-    } return grupp;
+    } return group;
     
  }
  

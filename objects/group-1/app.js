@@ -5,6 +5,4 @@ const {getGroup} = require("./index.js");
 const {assignGroup} = require("./index.js");
 const students = require("./groups")
 
-
-
-console.log(setupGroups());
+setupGroups();
