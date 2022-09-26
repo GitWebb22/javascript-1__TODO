@@ -1,3 +1,4 @@
+//Import av funktioner
 const {_setupGroups} = require("./index.js");
 const {_getStudents} = require("./index.js");
 const {_getStudent} = require("./index.js");
