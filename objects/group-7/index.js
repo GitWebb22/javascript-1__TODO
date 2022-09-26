@@ -7,7 +7,12 @@ const prompt = require("prompt-sync")();
 
  function assignGroup(index, size) {
     
-    //lägg till här vad gruppfördelningen ska vara
+    /*localeCompare (default engelska) 
+    jämför sort number ordning eller alfabetiskordning
+    */
+    allStudents.sort((a,b) => {
+        return a.favouriteColour.localeCompare(b.favouriteColour);
+    });
 
      let group = Math.floor((index) / size) + 1; //removed - 1 after index 
      allStudents[index].group = group;
@@ -30,18 +35,21 @@ const prompt = require("prompt-sync")();
     if (allStudents[index].favouriteColour == 1){
         allStudents[index].favouriteColour = 'blue';
     }
-    if (allStudents[index].favouriteColour == 2){
+    else if (allStudents[index].favouriteColour == 2){
         allStudents[index].favouriteColour = 'red';
     }
-    if (allStudents[index].favouriteColour == 3){
+    else if (allStudents[index].favouriteColour == 3){
         allStudents[index].favouriteColour = 'green';
     }
-    if (allStudents[index].favouriteColour == 4){
+    else if (allStudents[index].favouriteColour == 4){
         allStudents[index].favouriteColour = 'yellow';
     }
-    if (allStudents[index].favouriteColour == 5){
+    else if (allStudents[index].favouriteColour == 5){
         allStudents[index].favouriteColour = 'pink';
     }
+
+   // allStudents[index].favouriteColour.sort();
+
 
      // TODO: should scheduled time in the classroom be accounted for?
      //allStudents[index].personalityColour = Math.random(blue, green, red)
@@ -95,10 +103,10 @@ const prompt = require("prompt-sync")();
  }
  // TODO: return an array with only the students that belongs to a group with a specific index
  const getGroup = (arg) => {
-     return({
-         TODO: "return group " + arg
-         // students: students.all.splice(11,6) // TODO: this works as long as the array of students is sorted by group. Also the size 
-     })
+    //filter -> filtrerar alla studenter 
+    //student --> vad man vill kalla värdet för
+    //return allStudents.filter(student => student.group == arg); => funkar också 
+     return allStudents.filter((student) => student.group == arg);
  }
  
  exports._setupGroups = setupGroups
