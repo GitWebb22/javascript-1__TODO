@@ -1,54 +1,78 @@
-const students = require("../groups")
- // const students = require("../data/groups")
+const students = require("../groups");
+//added prompt sync so the user can iput information
+const prompt = require("prompt-sync")();
  
- const allStudents = students.all // read students from imported module
- let ambitionDefined, groupsAssigned
+ const allStudents = students.all; // read students from imported module
+ let colourDefined, groupsAssigned, amount;
 
  function assignGroup(index, size) {
-     let group = Math.floor((index + 1) / size) + 1;
-     students.all[index].group = group
-     index++
+    
+     let group = Math.floor((index) / size) + 1; //removed - 1 after index 
+     allStudents[index].group = group;
+     index++;
  
-     if(index >= students.all.length) {
+     if(index >= allStudents.length) {
          return true;   
      } 
      assignGroup(index, size);
  }
+ //function assignColour(index) {
+
+  //  let colour = Math.random
+ //}
  // TODO: Time isn't everything. Or is it?
- function applyAmbition(index) {
+ function applyColour(index) {
+
+    allStudents[index].favouriteColour = Math.floor(Math.random()*5);
      // TODO: should scheduled time in the classroom be accounted for?
-     students.all[index].hoursPerWeek = Math.floor(Math.random() * 24)
+     //allStudents[index].personalityColour = Math.random(blue, green, red)
+     //allStudents[index].personalityColour = Math.floor(Math.random(colour))
      // Some examples of attributes for inspiration. Booleans can be used on their own or grouped in an anonymous object
      //  students.all[index].personalityType = {
     //      red: false, blue: false, green: true, yellow: false
     //   }
     // ...
-     index++
+     index++;
  
      if (index >= allStudents.length) {
+        
          return true // remember that it's good practice to have single point of return for a function
      }
-     applyAmbition(index)
+     applyColour(index);
  }
  
  const getStudent = (index) => {
-     let i = Number(index-1)    //changed to index - 1 to make it possible for the  user to get the correct student info.
+     let i = Number(index-1);    //changed to index - 1 to make it possible for the  user to get the correct student info when requesting it.
     //operator inside if is fixed. Index is changed 
-     if (isNaN(i) || i > students.all.length || i > 0)
-     i += 0;    //changed so that the value 
-     //else i = index
-     return students.all[i]
+     if (isNaN(i) || i > allStudents.length || i >= 0)
+     //i -= i;    //changed so that the value is  
+     //else i = index //no need to have else 
+     return students.all[i];
  }
+
  const getStudents = () =>{
-     return students.all
+    /*
+    amount makes it possible for the user to input how many students should be 
+    put in each group. It will only return true if the inputed value is a number 
+    higher than zero and equal/or lower than the total number of students. 
+    */
+    amount = prompt("Enter how many students requested in each group? ");
+    amount = Number(amount);
+    if (amount <= allStudents.length && amount > 0){
+    assignGroup(0, amount);
+    return allStudents;
+    }
  }
  
  const setupGroups = () => {
      
-     ambitionDefined = applyAmbition(0)
-     groupsAssigned = assignGroup(0, 5) // TODO: maybe this need more thought?
+     colourDefined = applyColour(0);
+     
+     //assignGroup(0, 6); //removed, not necessary to have it here 
+        
+      // TODO: maybe this need more thought? //Fixed!!
  
-     return students.all   
+     return allStudents;  
  }
  // TODO: return an array with only the students that belongs to a group with a specific index
  const getGroup = (arg) => {
