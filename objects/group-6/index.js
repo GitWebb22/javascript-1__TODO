@@ -49,8 +49,7 @@ const getStudents = () =>{
     return students.all
 }
 
-const setupGroups = () => {
-    const studentsPerGroup = 6;
+const setupGroups = (studentsPerGroup = 6) => {
     sortIndexDefined = applySortIndex(0)
 
     students.all.sort(function(a ,b){
@@ -60,13 +59,17 @@ const setupGroups = () => {
     groupsAssigned = assignGroup(0, studentsPerGroup) // TODO: maybe this need more thought? It works?!
 
     const studentsClone = JSON.parse(JSON.stringify(students.all))
-    for (let i = 0; i < studentsPerGroup; i++) {
+    let i = 0;
+    // for (let i = 0; i < studentsPerGroup; i++) {
+    while (studentsClone.length > 0) {
         const studentsByGroup = studentsClone.splice(0, studentsPerGroup); //Yank out the first 6 students
 
         allGroups[i] = []; //assign the current rotations index to an empty array
         studentsByGroup.forEach(student => {
             allGroups[i].push("Group: " + student.group + " " + student.firstname + " " + student.lastname)
         })
+        
+        i++;
     }
     return allGroups
 }
