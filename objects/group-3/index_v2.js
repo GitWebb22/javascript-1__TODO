@@ -210,7 +210,7 @@ students = {
 };
 const allStudents = students.all;
 
-console.log("");
+
 
 //frågar vilken storlek på grupp, gör om till nummer och tilldelar det till variabeln storlekPåGrupp
 let storlekPåGrupp = Number(prompt("Storlek på grupp?: "));
