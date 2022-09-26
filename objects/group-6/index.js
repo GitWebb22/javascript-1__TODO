@@ -1,15 +1,15 @@
 
-// const prompt = require("prompt-sync")();
-// const students = require("./groups");
-// const students = genStudents();
-const students = require("../../data/groups");
+// const prompt = require("prompt-sync")()
+// const students = require("./groups")
+// const students = genStudents()
+const students = require("../../data/groups")
 
 // console.log(students)
 
 const allStudents = students.all // read students from imported module'
-const allGroups = [];
+const allGroups = []
 
-let sortIndexDefined,
+let ageDefined,
     groupsAssigned
 
 
@@ -24,8 +24,8 @@ function assignGroup(index, size) {
     assignGroup(index, size)
 }
 
-function applySortIndex(index) {
-    students.all[index].sortIndex = Math.floor(Math.random() * 24)
+function applyAgeProperty(index) {
+    students.all[index].age = 18 + Math.floor(Math.random() * 24) // we currently randomize the age property
 
     index++
 
@@ -33,14 +33,14 @@ function applySortIndex(index) {
         return true
     }
 
-    applySortIndex(index)
+    applyAgeProperty(index)
 }
 
 const getStudent = (index) => {
     if (!Number(index)) {
-        if (typeof index !== "string") return;
-        const inputString = index;
-        return students.all.filter((student) => {return student.firstname === inputString})
+        if (typeof index !== "string") return
+        const inputString = index
+        return students.all.filter((student) => {return student.firstname.toLowerCase() === inputString.toLowerCase()})
     } else {
         return students.all[Math.floor(index) - 1]
     }
@@ -50,33 +50,33 @@ const getStudents = () =>{
 }
 
 const setupGroups = (studentsPerGroup = 6) => {
-    sortIndexDefined = applySortIndex(0)
+    ageDefined = applyAgeProperty(0)
 
     students.all.sort(function(a ,b){
-        return a.sortIndex - b.sortIndex
+        return a.age - b.age
     })
 
     groupsAssigned = assignGroup(0, studentsPerGroup) // TODO: maybe this need more thought? It works?!
 
     const studentsClone = JSON.parse(JSON.stringify(students.all))
-    let i = 0;
+    let i = 0
     // for (let i = 0; i < studentsPerGroup; i++) {
     while (studentsClone.length > 0) {
-        const studentsByGroup = studentsClone.splice(0, studentsPerGroup); //Yank out the first 6 students
+        const studentsByGroup = studentsClone.splice(0, studentsPerGroup) //Yank out the first 6 students
 
-        allGroups[i] = []; //assign the current rotations index to an empty array
+        allGroups[i] = [] //assign the current rotations index to an empty array
         studentsByGroup.forEach(student => {
-            allGroups[i].push("Group: " + student.group + " " + student.firstname + " " + student.lastname)
+            allGroups[i].push("Group: " + student.group + " " + student.firstname + " " + student.lastname + " | Age: " + student.age)
         })
         
-        i++;
+        i++
     }
     return allGroups
 }
 // TODO: return an array with only the students that belongs to a group with a specific index
 const getGroup = (index) => {
-    if (!index) return allGroups;
-    return allGroups[index - 1];
+    if (!index) return allGroups
+    return allGroups[index - 1]
 }
 
 exports._setupGroups = setupGroups
@@ -87,11 +87,11 @@ exports._getGroup = getGroup
 
 // console.log(setupGroups())
 
-// setupGroups();
+// setupGroups()
 
 // while (true) {
-//     const input = prompt("Enter operation: ");
-//     if (input === "q") {process.exit(0);}
+//     const input = prompt("Enter operation: ")
+//     if (input === "q") {process.exit(0)}
 
 //     console.log(getGroup(input))
 // }
