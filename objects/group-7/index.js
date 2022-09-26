@@ -7,6 +7,8 @@ const prompt = require("prompt-sync")();
 
  function assignGroup(index, size) {
     
+    //lägg till här vad gruppfördelningen ska vara
+
      let group = Math.floor((index) / size) + 1; //removed - 1 after index 
      allStudents[index].group = group;
      index++;
@@ -16,14 +18,31 @@ const prompt = require("prompt-sync")();
      } 
      assignGroup(index, size);
  }
- //function assignColour(index) {
+ function assignColour(index) {
 
   //  let colour = Math.random
- //}
+}
  // TODO: Time isn't everything. Or is it?
  function applyColour(index) {
 
-    allStudents[index].favouriteColour = Math.floor(Math.random()*5);
+    allStudents[index].favouriteColour = Math.floor((Math.random()* 5)+ 1);
+
+    if (allStudents[index].favouriteColour == 1){
+        allStudents[index].favouriteColour = 'blue';
+    }
+    if (allStudents[index].favouriteColour == 2){
+        allStudents[index].favouriteColour = 'red';
+    }
+    if (allStudents[index].favouriteColour == 3){
+        allStudents[index].favouriteColour = 'green';
+    }
+    if (allStudents[index].favouriteColour == 4){
+        allStudents[index].favouriteColour = 'yellow';
+    }
+    if (allStudents[index].favouriteColour == 5){
+        allStudents[index].favouriteColour = 'pink';
+    }
+
      // TODO: should scheduled time in the classroom be accounted for?
      //allStudents[index].personalityColour = Math.random(blue, green, red)
      //allStudents[index].personalityColour = Math.floor(Math.random(colour))
