@@ -326,7 +326,7 @@ const getGroup = (vilkenGrupp) => {
 // Om ett namn inte finns i listan så avslutas sökningen med texten "Studenten finns inte i listan"
 // Om studenten finns i listan så skrivs den ut med console.log
 
-// TODO: Om fler än en student har samma förnamn så skrivs bara det första resultatet ut, fixa så att alla resultat skrivs ut.
+// --done--- : Om fler än en student har samma förnamn så skrivs bara det första resultatet ut, fixa så att alla resultat skrivs ut.
 // TODO: Möjligöra sökning på efternamn
 // TODO: Möjligöra sökning på fullständigt namn
 // TODO: Gör funktioner
@@ -348,13 +348,13 @@ while (isnum || sökResultat === "") {
   sökResultat = sökResultat.charAt(0).toUpperCase() + sökResultat.slice(1);
 }
 
-// Metoden find returnerar första värdet som matchar sökningen.
-let student = allStudents.find((student) => student.firstname === sökResultat);
+/// Metoden filter returnerar en array med alla värden som matchar sökningen.
+const student = allStudents.filter((student) => student.firstname === sökResultat);
 
 if (student) {
   console.log(student);
 } else {
-  console.log("Studenten finns inte");
+  console.log("Studenten finns inte i listan");
 }
 
 // =====================================
