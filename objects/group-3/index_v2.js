@@ -1,7 +1,6 @@
 const prompt = require("prompt-sync")();
 students = {
-  all: [
-    {
+  all: [{
       firstname: "Mattias",
       lastname: "Alm",
       email: "Mattias.Alm@yh.nackademin.se",
@@ -205,10 +204,11 @@ students = {
       firstname: "Sanaz",
       lastname: "Effati Khajehha",
       email: "Sanaz.EffatiKhajehha@yh.nackademin.se",
-    },
+    }
   ],
 };
 const allStudents = students.all;
+
 
 
 
@@ -317,6 +317,47 @@ const getGroup = (vilkenGrupp) => {
     return console.log(grupp);
   }
 };
+
+// ============SÖKFUNKTION===============
+
+// Sökning sker på förnamn
+// Stora eller små bokstäver spelar ingen roll (på första bokstaven)
+// Sökningen loopar om igen om användaren skriver in en siffra eller en tom sträng
+// Om ett namn inte finns i listan så avslutas sökningen med texten "Studenten finns inte i listan"
+// Om studenten finns i listan så skrivs den ut med console.log
+
+// TODO: Om fler än en student har samma förnamn så skrivs bara det första resultatet ut, fixa så att alla resultat skrivs ut.
+// TODO: Möjligöra sökning på efternamn
+// TODO: Möjligöra sökning på fullständigt namn
+// TODO: Gör funktioner
+
+// Frågar användaren om input
+let sökResultat = prompt("Sök efter student (skriv endast förnamnet): ");
+
+// Regex för att kolla om det finns en siffra i variablen sökResultat
+let isnum = /^\d+$/.test(sökResultat);
+
+// Gör om första bokstaven i sökningen till stor bokstav
+sökResultat = sökResultat.charAt(0).toUpperCase() + sökResultat.slice(1);
+
+// While loop som kör så länge användaren skriver in en siffra eller en tom sträng
+while (isnum || sökResultat === "") {
+  console.log("Endast bokstäver är tillåtna");
+  sökResultat = prompt("Sök efter student (skriv endast förnamnet): ");
+  isnum = /^\d+$/.test(sökResultat);
+  sökResultat = sökResultat.charAt(0).toUpperCase() + sökResultat.slice(1);
+}
+
+// Metoden find returnerar första värdet som matchar sökningen.
+let student = allStudents.find((student) => student.firstname === sökResultat);
+
+if (student) {
+  console.log(student);
+} else {
+  console.log("Studenten finns inte");
+}
+
+// =====================================
 
 getGroup(vilkenGrupp);
 
