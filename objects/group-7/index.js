@@ -23,14 +23,37 @@ const prompt = require("prompt-sync")();
      } 
      assignGroup(index, size);
  }
- function assignColour(index) {
+ //function assignColour(index) {
 
   //  let colour = Math.random
-}
+//}
  // TODO: Time isn't everything. Or is it?
  function applyColour(index) {
 
-    allStudents[index].favouriteColour = Math.floor((Math.random()* 5)+ 1);
+   // allStudents[index].favouriteColour = Math.floor((Math.random()* 5)+ 1);
+
+    switch (allStudents[index].favouriteColour = Math.floor((Math.random()* 5)+ 1)){
+        case 1:
+            allStudents[index].favouriteColour = 'blue';
+           break; 
+
+        case 2:
+            allStudents[index].favouriteColour = 'red';
+            break; 
+        
+        case 3:
+            allStudents[index].favouriteColour = 'green';
+            break; 
+
+        case 4:
+            allStudents[index].favouriteColour = 'yellow';
+            break; 
+
+        case 5:
+            allStudents[index].favouriteColour = 'pink';
+            break; 
+    }
+    /*
 
     if (allStudents[index].favouriteColour == 1){
         allStudents[index].favouriteColour = 'blue';
@@ -47,6 +70,7 @@ const prompt = require("prompt-sync")();
     else if (allStudents[index].favouriteColour == 5){
         allStudents[index].favouriteColour = 'pink';
     }
+    */
 
    // allStudents[index].favouriteColour.sort();
 
@@ -77,7 +101,7 @@ const prompt = require("prompt-sync")();
      return students.all[i];
  }
 
- const getStudents = () =>{
+ const getStudents = () => {
     /*
     amount makes it possible for the user to input how many students should be 
     put in each group. It will only return true if the inputed value is a number 
@@ -90,7 +114,7 @@ const prompt = require("prompt-sync")();
     return allStudents;
     }
  }
- 
+
  const setupGroups = () => {
      
      colourDefined = applyColour(0);
@@ -106,7 +130,7 @@ const prompt = require("prompt-sync")();
     //filter -> filtrerar alla studenter 
     //student --> vad man vill kalla värdet för
     //return allStudents.filter(student => student.group == arg); => funkar också 
-     return allStudents.filter((student) => student.group == arg);
+    return allStudents.filter((student) => student.group == arg);
  }
  
  exports._setupGroups = setupGroups
