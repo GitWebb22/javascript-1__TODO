@@ -12,7 +12,7 @@ const allGroups = []
 let ageDefined,
     groupsAssigned
 
-
+let index = 197231
 function assignGroup(index, size) {
     let group = Math.floor((index) / size) + 1
     students.all[index].group = group
@@ -52,24 +52,23 @@ const getStudents = () =>{
 const setupGroups = (studentsPerGroup = 6) => {
     ageDefined = applyAgeProperty(0)
 
-    students.all.sort(function(a ,b){
-        return a.age - b.age
+    students.all.sort(function (a, b) {
+        return a.age - b.age // if the return value < 0 then a will get a lower index
     })
 
     groupsAssigned = assignGroup(0, studentsPerGroup) // TODO: maybe this need more thought? It works?!
 
-    const studentsClone = JSON.parse(JSON.stringify(students.all))
+    const studentsClone = JSON.parse(JSON.stringify(students.all)) //create a clone of the students.all array
     let i = 0
-    // for (let i = 0; i < studentsPerGroup; i++) {
-    while (studentsClone.length > 0) {
+    while (studentsClone.length > 0) { //as long as there are elements in studentsClone keep running the following:
         const studentsByGroup = studentsClone.splice(0, studentsPerGroup) //Yank out the first 6 students
 
         allGroups[i] = [] //assign the current rotations index to an empty array
-        studentsByGroup.forEach(student => {
+        studentsByGroup.forEach(student => { //for every student push their basic information into their assigned group array as a string
             allGroups[i].push("Group: " + student.group + " " + student.firstname + " " + student.lastname + " | Age: " + student.age)
         })
         
-        i++
+        i++ //when all users in a group has been added to their groups array go to the next group
     }
     return allGroups
 }
@@ -78,6 +77,8 @@ const getGroup = (index) => {
     if (!index) return allGroups
     return allGroups[index - 1]
 }
+
+// setupGroups();
 
 exports._setupGroups = setupGroups
 exports._getStudents = getStudents
