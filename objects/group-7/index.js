@@ -107,6 +107,9 @@ const getStudents = () => {
     assignGroup(0, amount);
     return allStudents;
   }
+  else if (amount > allStudents.length){
+    return "You have entered a higher number than the total amount of students!"
+  }
   else {
     return ("That is not a number, please try again!");
   }
