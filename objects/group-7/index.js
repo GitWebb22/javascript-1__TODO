@@ -11,13 +11,14 @@ let colourDefined, groupsAssigned, amount;
 
 function applyColour(index) {
   /* We tried to use if and else if first but noticed that switch made it more
-    visually easy to understand.
-    
-    Math.floor is used so that the random number given by using Math.random is round
-    down to the closet Integer. Here we take Math.random, multiply by 4 and adding 1 
-    to get a random number between 1-4.
-    Depending on which number is randomly given the number 
-    */
+  ** visually easy to understand.
+  **  
+  ** Math.floor is used so that the random number given by using Math.random is rounded
+  ** down to the closet Integer. Here we take Math.random, multiply by 4 and adding 1 
+  ** to get a random number between 1-4.
+  ** Depending on which number is randomly given the number will be changed to the a
+  ** assigned colour. 
+  */
 
   switch (
     (allStudents[index].PersonalityColour = Math.floor(Math.random() * 4 + 1))
@@ -46,7 +47,10 @@ function applyColour(index) {
   }
   applyColour(index);
 }
-
+  /* Function applyPersonalityType, checks which colour allStudents have been assigned
+  ** and depending on which colour they have, an assigned Personality type will be added 
+  ** based on the colour.
+  */
 function applyPersonalityType(index) {
   switch (allStudents[index].PersonalityColour) {
     case "blue":
@@ -74,42 +78,54 @@ function applyPersonalityType(index) {
 }
 
 const getStudent = (index) => {
-  /**
-   * create a copy of students object
+   /* 
+   ** create a copy of students object
    */
   const temp = JSON.parse(JSON.stringify(allStudents));
-  let i = Number(index - 1); //changed to index - 1 to make it possible for the  user to get the correct student info when requesting it.
+  /* by adding -1 to index, will make it possible for the user to get the correct student info
+  ** when requesting student 1, otherwise the user would get student 2 that is placed in index 1.
+  */
+  let i = Number(index - 1); 
+  /* If the user have inputted a value that is not a number, is higher than the length of the 
+  ** student list, a message will be shown that the user have inputted the wrong index.
+  */
   if (isNaN(i) || i >= temp.length || i < 0) return "Wrong index";
   else return allStudents[i];
 };
-/* For the future this variable name should maybe be changed to avoid accidentally mistaking it for the
- ** variable getStudent with such a similar name.
- */
+/* For the future this variable name "getStudents" should maybe be changed to avoid accidentally 
+** mistaking it for the variable getStudent which have a similar name.
+*/
 const getStudents = () => {
-  /*
-    ** amount makes it possible for the user to input how many students should be 
-    ** put in each group. It will only return true if the input value is a number 
-    ** higher than zero and equal/or lower than the total number of students. 
-
-    ** 
-    */
+/*
+** amount makes it possible for the user to input how many students that should be 
+** put in each group. It will only return true if the input value is a number higher
+** than zero and equal/or lower than the total number of students. 
+*/
   amount = Number(prompt("Enter how many students requested in each group? "));
   //amount = Number(amount);
   if (amount <= allStudents.length && amount > 0) {
     assignGroup(0, amount);
     return allStudents;
   }
-};
+  else {
+    return ("That is not a number, please try again!");
+  }
+}
+
+/* Function assignGroup sort allStudents alphabetically based on the colour they have
+** been assigned. After allStudents have been sorted they get divided in groups based 
+** on the index the user have written on how many students should be in each group.
+*/
 
 function assignGroup(index, size) {
-  /* localeCompare has default language, English
-   ** this compares sort number ordning eller alfabetiskordning
-   */
+/* localeCompare has default language, English. This means that Strings will be sorted 
+** alphabetically and Numbers will be sorted from low to high.
+*/
   allStudents.sort((a, b) => {
     return a.PersonalityColour.localeCompare(b.PersonalityColour);
   });
 
-  let group = Math.floor(index / size) + 1; //removed - 1 after index
+  let group = Math.floor(index / size) + 1;
   allStudents[index].group = group;
   index++;
 
@@ -119,6 +135,9 @@ function assignGroup(index, size) {
   assignGroup(index, size);
 }
 
+/* Function setupGroups 
+*/
+
 const setupGroups = () => {
   colourDefined = applyColour(0);
 
@@ -127,9 +146,9 @@ const setupGroups = () => {
   return allStudents;
 };
 
-/*
- **
- */
+/* Function 
+**
+*/
 const getGroup = (arg) => {
   /* filter -> filtrerar alla studenter
    ** student --> vad man vill kalla värdet för
