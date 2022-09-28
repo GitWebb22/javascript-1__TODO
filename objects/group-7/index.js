@@ -1,6 +1,6 @@
 // Having two dots before "groups" makes it possible to go back the previous folder.
 const students = require("../groups");
-/* Added prompt sync so the user can iput information, in this program, making
+/* Added prompt sync so the user can input information, in this program, making
  ** it possible for the user to decide how many student should be placed in each
  ** group.
  */
@@ -135,25 +135,26 @@ function assignGroup(index, size) {
   assignGroup(index, size);
 }
 
-/* Function setupGroups 
+/* Function setupGroups will start the functions applyColour and applyPersonalityType
+** and return allStudents.
 */
 
 const setupGroups = () => {
   colourDefined = applyColour(0);
-
   personalityDefined = applyPersonalityType(0);
-
   return allStudents;
 };
 
-/* Function 
-**
+/* Function getGroup will filter allStudents based on which group they are in and is
+** requested by the user. If the user request students from group 2, the function filter
+** will check all students and only return the students in the requested group.
 */
 const getGroup = (arg) => {
-  /* filter -> filtrerar alla studenter
-   ** student --> vad man vill kalla värdet för
-   ** return allStudents.filter(student => student.group == arg); => funkar också
-   */
+  /* Writing as below comments is also possible and will resolve in the same outcome, but
+  ** to make it more clear, we have placed "student" inside brackets ().
+  **
+  ** return allStudents.filter(student => student.group == arg);
+  */
   return allStudents.filter((student) => student.group == arg);
 };
 
