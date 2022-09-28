@@ -87,9 +87,12 @@ const getStudent = (index) => {
   /* If the user have inputted a value that is not a number, is higher than the length of the
    ** student list, a message will be shown that the user have inputted the wrong index.
    */
-  if (isNaN(i) || i >= temp.length || i < 0) return "Wrong index";
+  if (isNaN(i) || i >= temp.length || i < 0) {
+  return "Wrong index";
+  }
   else return temp[i];
-};
+}
+
 /* For the future this variable name "getStudents" should maybe be changed to avoid accidentally
  ** mistaking it for the variable getStudent which have a similar name.
  */
